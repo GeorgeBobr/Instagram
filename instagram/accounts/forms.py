@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from accounts.models import CustomUser
+from django import forms
 
 class MyUserCreationForm(UserCreationForm):
     class Meta:
@@ -8,3 +9,5 @@ class MyUserCreationForm(UserCreationForm):
 
 
 
+class FollowForm(forms.Form):
+    user_id = forms.IntegerField(widget=forms.HiddenInput())
