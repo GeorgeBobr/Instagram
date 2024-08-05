@@ -30,8 +30,13 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostDetailView(DetailView):
     model = Post
-    template_name = 'posts/post_detail.html'
+    template_name = 'webapp/post_detail.html'
     context_object_name = 'post'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comment_form'] = CommentForm()
+        return context
 
 @login_required
 def add_comment(request, pk):
