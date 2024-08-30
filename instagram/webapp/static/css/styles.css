@@ -1,0 +1,39 @@
+.feed-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.feed {
+    width: 600px;
+    background-color: #fff;
+    border: 1px solid #dbdbdb;
+    padding: 20px;
+}
+
+.post {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.post-author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.post-author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-actions, .post-details {
+    margin-top: 10px;
+}
