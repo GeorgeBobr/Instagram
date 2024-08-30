@@ -1,8 +1,7 @@
-# views.py
 from rest_framework import viewsets, permissions, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from .models import Post, Like, Comment
+from webapp.models import Post, Like, Comment
 from .serializers import PostSerializer, LikeSerializer, CommentSerializer
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -76,4 +75,3 @@ class CommentViewSet(viewsets.ModelViewSet):
         if instance.user != self.request.user:
             raise permissions.PermissionDenied("You do not have permission to delete this comment.")
         instance.delete()
-    
