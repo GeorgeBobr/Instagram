@@ -1,53 +1,44 @@
-<!doctype html>
+{% load static %}
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Clone</title>
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
 </head>
 <body>
-{% block content %}
-<div class="container">
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-8">
-            <h1 class="text-center mb-4">Home</h1>
-            <div class="row">
-                {% for post in posts %}
-                    <div class="col-md-4 mb-3">
-                        <div class="card">
-                            <img src="{{ post.image.url }}" class="card-img-top" alt="Post image">
-                            <div class="card-body">
-                                <p class="card-text">{{ post.description }}</p>
-                            </div>
-                        </div>
-                    </div>
-                {% empty %}
-                    <p class="text-center">No posts found.</p>
-                {% endfor %}
+    <header>
+        <nav class="sidebar">
+            <div class="logo">Instagram</div>
+            <ul class="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="{% url 'accounts:profile' pk=request.user.pk%}">Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="feed-container">
+        <section class="feed">
+            <div class="post">
+                <div class="post-header">
+                    <img src="{% static 'path_to_profile_image.jpg' %}" alt="Profile Image" class="post-author-avatar">
+                    <button class="post-options">•••</button>
+                </div>
+                <div class="post-image">
+                    <img src="{{ MEDIA_URL }}{{ post.image.url }}" alt="Post Image">
+                </div>
+                <div class="post-actions">
+                    <span class="action-icon">❤️</span>
+                    <span class="action-icon">💬</span>
+                    <span class="action-icon">✈️</span>
+                </div>
             </div>
-            <div class="pagination">
-                <span class="step-links">
-                    {% if page_obj.has_previous %}
-                        <a href="?page=1">&laquo; first</a>
-                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-                    {% endif %}
-                    <span class="current">
-                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                    </span>
-                    {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}">next</a>
-                        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-                    {% endif %}
-                </span>
-            </div>
-        </div>
-    </div>
-</div>
-{% endblock %}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-        crossorigin="anonymous"></script>
+        </section>
+    </main>
+
+    <script src="{% static 'js/home.js' %}"></script>
+    <script src="{% static 'js/like.js' %}"></script>
+
 </body>
 </html>
